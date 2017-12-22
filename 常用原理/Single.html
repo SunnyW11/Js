@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /* 
+      测试一下函数在被new 调用和普通调用的区别；
+     */
+
+     function test(){
+      console.log(this)
+      return 1;
+     }
+
+
+    /* 
+     *单例模式
+     */
+    /* function Single(){
+      if(Single._instance===undefined){
+        Single._instance=this;
+      }
+      return Single._instance;
+    }
+
+    var a=new Single()
+    var b=new Single()
+
+    console.log(a===b); */
+
+
+/* 
+    闭包的单例模式
+ */
+    var Single=(function (){
+      var _instance;
+      return function(){
+        if(_instance===undefined){
+          _instance=this;
+        }
+        return _instance;
+      }
+    })()
+
+    var a=new Single()
+    var b=new Single()
+
+    console.log(a===b);
+  </script>
+</body>
+</html>

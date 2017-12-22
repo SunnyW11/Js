@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2 id="h2">hello</h2>
+  <fieldset disabled="disabled">
+    <legend>asdas</legend>
+  </fieldset>
+  <script>
+    /*     function a() {
+          console.log('a');
+          console.log(this)
+          
+          b()
+        }
+        function b() {
+          console.log('b');
+          console.log(this)
+          
+          c()
+        }
+        function c() {
+          console.log('c');
+          console.log(this)
+    
+        }
+    
+        a(); */
+
+    function a() {
+      console.log('a');
+
+    }
+
+    function b() {
+      console.log('b');
+
+    }
+
+    a();
+    b();
+
+    function DoSomething(ele, color) {
+      this.color = color;
+      this.ele = document.getElementById(ele);
+    }
+    DoSomething.prototype.init = function () {
+      this.ele.style.color = this.color;
+    }
+
+    var h2 = new DoSomething("h2", "red");
+    // h2.init();
+
+
+    function Shape() {
+      this.x = 0;
+      this.y = 0;
+    }
+
+    // superclass method
+    Shape.prototype.move = function (x, y) {
+      this.x += x;
+      this.y += y;
+      console.info('Shape moved.');
+    };
+
+    // Rectangle - subclass
+    function Rectangle() {
+      Shape.call(this); // call super constructor.
+    }
+
+    // subclass extends superclass
+    Rectangle.prototype = Object.create(Shape.prototype);
+    Rectangle.prototype.constructor = Rectangle;
+
+
+    function Foo(name){
+      this.name=name;
+    }
+    Foo.prototype.sayName=function(){
+      console.log(this.name)
+    }
+
+    function Bar(name,label){
+      Foo.call(this,name);
+      this.label=label;
+    }
+
+    Bar.prototype=Object.create(Foo.prototype);
+    // Bar.prototype.constructor=Bar;
+    Bar.prototype.syaLabel=function(){
+      console.log(this.label);
+    }
+
+    var xiaomin=new Bar('xiaomin','laugh');
+
+    xiaomin.sayName();
+    xiaomin.syaLabel();
+  </script>
+</body>
+
+</html>

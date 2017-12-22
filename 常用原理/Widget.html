@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    body{
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+ 
+  
+</head>
+<body>
+  <span id="foo">foo</span>
+
+  <script src="./jquery-1.11.3.js"></script>
+  <script>
+    function Widget(width,height){
+      this.width=width||50;
+      this.height=height||26;
+      this.ele=null;
+    }
+    Widget.prototype.render=function(_where){
+      if(this.ele){
+        this.ele.css({
+          width:this.width+"px",
+          height:this.height+"px"
+        }).appendTo(_where);
+      }
+    }
+
+    function Button(width,height,label){
+      Widget.call(this,width,height);
+      this.label=label||"default";
+      this.ele=$("<button>").text(this.label);
+    }
+
+    Button.prototype=Object.create(Widget.prototype);
+    // Button.prototype.constructor=Button;
+
+    Button.prototype.render=function(_where){
+      Widget.prototype.render.call(this,_where);
+      this.ele.click(this.clickHandler.bind(this));
+    }
+
+    Button.prototype.clickHandler=function(e){
+      // console.log("button ");
+      console.log("button "+this.label+" was clicked");
+    }
+
+
+      var body=$(document.body);
+      var btn1=new Button("100","50","hello");
+      var btn2=new Button("125","60","Button");
+      btn1.render(body);
+      btn2.render(body);
+    
+    function *main(){
+      try {
+        var test=yield $.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars'
+        ,function(data){/* res.next(data) */});
+        console.log(test)
+      } catch (error) {
+        console.log(error);
+        
+      }
+    }
+
+    var res=main();
+    // console.log(res.next())
+    
+    var span =document.getElementById("foo");
+    document.addEventListener("click",function(e){
+      // console.log(e)
+      console.log(e.target)
+      // console.log(this)
+      // e.stopPropagation();
+    },false);
+  </script>
+</body>
+</html>

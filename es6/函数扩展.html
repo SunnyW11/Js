@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*设置参数默认值*/
+    function add(x=0,y=10){
+      return x+y;
+    }
+    console.log(add());
+    console.log(add(1));
+    console.log(add(1,2));
+
+    // 箭头函数和解构赋值搭配使用
+    var fullname=({first,second})=> first+' '+second;
+    var BillGate=fullname({first:'Bill',second:'gate'})
+    console.info(BillGate);
+
+    // rest函数
+    function add(...num){
+      var number=0;
+      for(var i of num){
+        number+=i;
+      }
+      return number;
+    }
+    console.dir(add(1,2,2,3,54));
+
+    // rest函数 和箭头函数搭配使用
+    var compare =(...numbers)=>{
+      return numbers.sort((a,b)=>{return a-b})
+    }
+    var list=compare(1,5,12,6,101);
+    console.info(list);
+    
+
+  /*递归*/
+  function fun(n){
+    if(n===1){
+      return n;
+    }
+    return n+arguments.callee(n-1);
+  }
+  console.info(fun(5));
+  </script>
+</body>
+</html>

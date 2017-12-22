@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <script>
+    // 数组的解构赋值
+    let [a,b]=[1,'2']
+    let [obj={}]=[{c:true}]
+    console.log(a,b,obj);
+
+    // 对象的解构赋值
+    // var {q,w}={q:11,w:'11'}
+    // console.log(q,w)
+    // var {e:r,t:y}={e:22,t:'22'}  
+    // console.log(r,y);
+
+    // 字符串的解构赋值
+    var [p,o,i,u]='moon';
+    console.log(p,o,i,u);
+
+    let {length:len}='hello'  //字符串的长度
+    console.log(len);
+
+
+    /*用途*/
+    //交换变量
+    let x=1,y=2;
+    [x,y]=[y,x]  
+    console.log(x,y)
+
+    //接受函数返回值或者json返回值
+
+    //给函数传递默参数
+
+    
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin:0;
+    }
+  </style>
+</head>
+
+<body>
+  <p title="hello">shoiahs</p>
+  <div style="height: 200vh;">
+    <button type="" onclick="scroll()">dianwo...</button>
+  </div>
+  <h2>hello</h2>
+  <script>
+    function scroll(){
+      document.querySelector('h2').scrollIntoView();
+    }
+  </script>
+  <script>
+    var nameSpace = (function () {
+      var name = "wsl";
+      var age = 25;
+      var hobbit = "music and game";
+      return {
+        getter: function () {
+          console.log(hobbit, age, name)
+        },
+        setter: function (arg) {
+          age = arg;
+        }
+      }
+    })()
+    nameSpace.setter(22);
+    nameSpace.getter();
+  </script>
+
+
+  <script>
+    function UiObject(uname) {
+      var _uname = uname || 'RootUiObject';
+    }
+    UiObject.prototype = {
+      _utype: "UiObject",
+      _author: 'liuhailong',
+
+      get utype() { return this._utype; },
+      get author() { return this._author; },
+
+      get uname() { return this._uname; },
+      set uname(uname) { this._uname = uname; },
+      render: function () {
+        console.log('Render Me!');
+      }
+    }
+
+    var uiRoot = new UiObject();
+    uiRoot.uname = 'new name';
+    uiRoot.utype = 'new type';
+    uiRoot.author = 'new autho';
+    console.log(uiRoot.uname); // output : new name  
+    console.log(uiRoot.utype); // output : UiObject  
+    console.log(uiRoot.author);// output : liuhailong
+  </script>
+  <script>
+    function pushArr1(){
+      var arr=[];
+      for(var i=0;i<10;i++){
+        arr[i]=i;
+      }
+      console.log(arr);
+    }
+
+    function pushArr2(){
+      var arr=[];
+      for(var i=0;i<10;i++){
+        arr[i]=(function(num){
+          return num;
+        })(i);
+      }
+      console.log(arr);
+    } 
+
+    pushArr1();
+    pushArr2();
+
+    var hello='hello';
+    var people={
+      name:'wsl',
+      hello:'hello ,i am wsl;'
+    }
+    function say(){
+      console.log(this.hello)
+    }
+    say();
+    say.apply(people);
+    
+
+  </script>
+</body>
+
+</html>

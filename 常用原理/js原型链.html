@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+
+        function Person(name) {
+            this.name = name;
+        }
+        Person.prototype.sayName = function () {
+            console.log(this.name);
+        }
+        var xiaomi = new Person("xiaomi");
+        xiaomi.sayName();
+
+
+        //  构造函数的constructor指向Function
+        console.log(Person.constructor == Function)
+        
+        // 对象的__proto__  永远指向的是 构造改对象的函数的prototype
+        //每个对象都有一个__proto__属性，指向创建该对象的函数的prototype
+        console.log(Person.__proto__ == Function.prototype)  //true
+        //一个函数或者对象的__proto__继承等于另一个函数的prototype  说明改对象继承另一个函数
+        console.log((Person instanceof Function))
+        
+        
+        //构造函数的prprototype 是一个对象  里面的constructor指向的是构造函数本身
+        //构造函数  实例化（new出来）的对象 的consturctor同样指向  构造函数本身
+        //所以  构造函数的prprototype 也可以说是 构造函数 的实例
+        console.log((Person.prototype.__proto__==Object.prototype))
+        console.log((Person.prototype.__proto__.constructor==Object.prototype.constructor))
+        console.log((Person.prototype instanceof Object))
+        
+
+        console.log(Function instanceof Function);
+        console.log(Object instanceof Function);
+        console.log(Object instanceof Object);
+        console.log(Function instanceof Object);
+    </script>
+
+    <script>
+        function nothing() {
+            console.log("nothing")
+        }
+        console.log(nothing.__proto__.__proto__==Object.prototype)
+    </script>
+
+    <script>
+        function Animal(name,age){
+            this.name=name;
+            this.age=age;
+            
+        }
+
+        Animal.prototype.luathing=function(){
+                console.log('hahahaha');
+        }
+
+        function Human(gender,age,name){
+            this.name=name;
+            this.age=age;
+            this.gender=gender;
+        }
+
+        function Engineer(skill,gender,name,age){
+            this.skill=skill;
+            Human.call(this,gender,name,age)
+        }
+
+        //创建一个基于父类原型的空对象，并赋值给子类做为原型  
+        Human.prototype=Object.create(Animal.prototype);
+        Engineer.prototype=Object.create(Human.prototype);
+        console.log(Human.prototype.constructor)// 输出为： Animal
+
+        //此时子类的prototype.constructor为父类的构造函数   修正prototype.constructor的指向为子类
+        Human.prototype.constructor=Human;
+        Engineer.prototype.constructor=Engineer;
+        console.log(Human.prototype.constructor)// 输出为： Animal
+
+        var iter=new Engineer('development','男','吴松林','25');
+        console.log(iter.skill);
+        console.log(iter.age);
+        console.log(iter.luathing());
+        console.log(Engineer.prototype);
+
+        var WSL={
+            name:'wsl'
+        }
+        var wsl=Object.create(WSL);
+        console.log(wsl);
+    </script>
+</body>
+
+</html>

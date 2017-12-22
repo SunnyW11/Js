@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+  <script>
+    
+   // includes(), startsWith(), endsWith()
+   var str='hello world';
+   console.log(str.endsWith('ld',11))  //第二个参数为前多少位里面 以什么结束
+   console.log(str.startsWith('hello',1)) //第二个参数为 从第几位开始
+   console.log(str.includes('e',6))//第二个参数为 从第几位开始
+
+   /*repeat()函数*/
+   'a'.repeat(5);  //重复多少次
+   console.log('wsl'.repeat(5));  
+
+   /*模板字符串*/
+   var html=`<h1>hello</h1><h2>world</h2>`; //angular的template 就是基于模板字符串实现的
+   //模板字符串可利用${} 嵌入任意js表达式
+   var html2=`<b>${1+2}</b>`; 
+   document.write(html2);
+
+  </script>
+  </body>
+</html>
